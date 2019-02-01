@@ -17,5 +17,5 @@ Notes:
 * The client id and client secret are the consumer key and consumer secret, respectively, for the connected app
 "karisforce". See [this description](https://developer.salesforce.com/forums/?id=906F0000000AfcgIAC) of how to obtain those values.
 * The user name and password are your usual login details for Karis Kids Saleforce.
-You must have karisforce assigned as a connected app.
+You must have "karisforce" assigned as a connected app.
 * The security token is emailed to you when you [reset your security token](https://help.salesforce.com/articleView?id=user_security_token.htm&type=5).
