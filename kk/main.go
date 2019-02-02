@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/glyn/go-force/sobjects"
 	"log"
 	"os"
 
@@ -24,7 +25,26 @@ func main() {
 		log.Fatal(err)
 	}
 
-	_ = forceApi
+	type AccountQueryResponse struct {
+		sobjects.BaseQuery
+		Records []*sobjects.Account `force:"records"`
+	}
+
+	someCustomSObjects := &AccountQueryResponse{}
+	err = forceApi.Query("SELECT Id FROM Account LIMIT 20", someCustomSObjects)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	for _, c := range someCustomSObjects.Records {
+		var out sobjects.Account
+		err := forceApi.GetSObject(c.Id, []string{}, &out)
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Printf("%#v\n", out)
+
+	}
 
 	fmt.Println("Hello Karis")
 }
